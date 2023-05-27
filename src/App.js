@@ -45,6 +45,8 @@ function App() {
         {
           userVoted ? <ThankYou /> : null
         }
+
+        
         {/* <Timer /> */}
     </div>
   )
