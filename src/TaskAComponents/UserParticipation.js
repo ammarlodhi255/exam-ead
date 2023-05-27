@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const UserParticipation = (props) => {
     const { pollData, handleVote } = props;
     const [ currentVote, setCurrentVote ] = useState(null);
-
+    
     const changeCurrentVote = (event) => {
         setCurrentVote(event.target.value)
     }
@@ -19,7 +19,7 @@ const UserParticipation = (props) => {
                 }
             </select>
             <br />
-            <button onClick={() => handleVote(currentVote) }>Submit Your Vote</button>
+            <button onClick={(e) => handleVote(e, currentVote) }>Submit Your Vote</button>
         </form>
     );
 }
