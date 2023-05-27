@@ -33,8 +33,10 @@ function App() {
 
   return (
     <div className="App">
+    
       <PollDisplay pollData={pollData}/>
       <UserParticipation pollData={pollData} handleVote={handleVote}/>
+      
     </div>
   );
 }
