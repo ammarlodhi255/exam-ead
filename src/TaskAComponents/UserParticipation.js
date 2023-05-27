@@ -14,6 +14,7 @@ const UserParticipation = (props) => {
     const resetUser = () => {
         setCurrentVote(null);
         target.checked = false;
+        props.setUserVoted(false);
     }
 
     return (

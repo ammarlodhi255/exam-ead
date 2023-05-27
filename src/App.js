@@ -38,7 +38,7 @@ function App() {
     <div className="App">
         <PollDisplay pollData={pollData}/>
         {
-          started ? <UserParticipation pollData={pollData} handleVote={handleVote}/> : 
+          started ? <UserParticipation pollData={pollData} handleVote={handleVote} setUserVoted={setUserVoted}/> : 
           <button onClick={() => setStarted(true)}>START</button>
         }
 
