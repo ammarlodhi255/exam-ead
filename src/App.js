@@ -2,8 +2,10 @@ import './App.css';
 import PollDisplay from './TaskAComponents/PollDisplay';
 import UserParticipation from './TaskAComponents/UserParticipation';
 import React, { useState } from 'react';
+import Timer from './TaskBComponents/Timer';
 
 function App() {
+  const [ started, setStarted ] = useState(false);
   const [ userVoted, setUserVoted ] = useState(false);
 
   const [ pollData, setPollData ] = useState({
@@ -35,8 +37,13 @@ function App() {
     <div className="App">
     
       <PollDisplay pollData={pollData}/>
-      <UserParticipation pollData={pollData} handleVote={handleVote}/>
+      {
+        started ? <UserParticipation pollData={pollData} handleVote={handleVote}/> : 
+        <button onClick={() => setStarted(true)}>START</button>
+      }
       
+      
+      {/* <Timer /> */}
     </div>
   );
 }
