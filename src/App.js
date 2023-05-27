@@ -28,6 +28,7 @@ function App() {
       newChoices[id - 1] = {'id': id, 'label': currentVote, 'votes': voteCount + 1}
   
       setPollData(prevState => ({ ...prevState, choices: newChoices}))
+      setUserVoted(userVoted => true)
     } else {
       alert('Sorry Your Vote Has Been Already Submitted!')
     }

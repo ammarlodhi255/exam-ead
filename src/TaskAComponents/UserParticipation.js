@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 import AnotherUserParticipation from './AnotherUserParticipation';
 
-
 const UserParticipation = (props) => {
     const { pollData, handleVote } = props;
     const [ currentVote, setCurrentVote ] = useState(pollData.choices[0].label);
-
+    const [ target, setTarget ] = useState(null)
 
     const changeCurrentVote = (event) => {
         setCurrentVote(event.target.value)
-        setUserVoted(userVoted => true)
+        setTarget(event.target)
     }
 
     const resetUser = () => {
         setCurrentVote(null);
-        setUserVoted(false);
+        target.checked = false;
     }
 
     return (
