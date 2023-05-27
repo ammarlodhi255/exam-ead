@@ -4,6 +4,7 @@ import UserParticipation from './TaskAComponents/UserParticipation';
 import React, { useState } from 'react';
 
 function App() {
+  const [ userVoted, setUserVoted ] = useState(false);
 
   const [ pollData, setPollData ] = useState({
     "question": "What is your favorite programming language?",
@@ -16,15 +17,18 @@ function App() {
 
   const handleVote = (event, currentVote) => {
     event.preventDefault()
-    
-    const voteObject = pollData.choices.filter( (choice, index) => choice.label === currentVote )
-    const voteCount = voteObject[0].votes;
-    const id = voteObject[0].id;
-
-    let newChoices = pollData.choices
-    newChoices[id - 1] = {'id': id, 'label': currentVote, 'votes': voteCount + 1}
- 
-    setPollData(prevState => ({ ...prevState, choices: newChoices}))
+    if (!userVoted) {
+      const voteObject = pollData.choices.filter( (choice, index) => choice.label === currentVote )
+      const voteCount = voteObject[0].votes;
+      const id = voteObject[0].id;
+      let newChoices = pollData.choices
+      newChoices[id - 1] = {'id': id, 'label': currentVote, 'votes': voteCount + 1}
+  
+      setPollData(prevState => ({ ...prevState, choices: newChoices}))
+      setUserVoted(userVoted => true)
+    } else {
+      alert('Sorry Your Vote Has Been Already Submitted!')
+    }
   }
 
   return (
