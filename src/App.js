@@ -3,11 +3,12 @@ import PollDisplay from './TaskAComponents/PollDisplay';
 import UserParticipation from './TaskAComponents/UserParticipation';
 import React, { useState } from 'react';
 import Timer from './TaskBComponents/Timer';
+import ThankYou from './TaskAComponents/ThankYou';
 
 function App() {
   const [ started, setStarted ] = useState(false);
   const [ userVoted, setUserVoted ] = useState(false);
-
+  
   const [ pollData, setPollData ] = useState({
     "question": "What is your favorite programming language?",
     "choices": [
@@ -27,7 +28,6 @@ function App() {
       newChoices[id - 1] = {'id': id, 'label': currentVote, 'votes': voteCount + 1}
   
       setPollData(prevState => ({ ...prevState, choices: newChoices}))
-      setUserVoted(userVoted => true)
     } else {
       alert('Sorry Your Vote Has Been Already Submitted!')
     }
@@ -35,17 +35,18 @@ function App() {
 
   return (
     <div className="App">
-    
-      <PollDisplay pollData={pollData}/>
-      {
-        started ? <UserParticipation pollData={pollData} handleVote={handleVote}/> : 
-        <button onClick={() => setStarted(true)}>START</button>
-      }
-      
-      
-      {/* <Timer /> */}
+        <PollDisplay pollData={pollData}/>
+        {
+          started ? <UserParticipation pollData={pollData} handleVote={handleVote}/> : 
+          <button onClick={() => setStarted(true)}>START</button>
+        }
+
+        {
+          userVoted ? <ThankYou /> : null
+        }
+        {/* <Timer /> */}
     </div>
-  );
+  )
 }
 
 export default App;

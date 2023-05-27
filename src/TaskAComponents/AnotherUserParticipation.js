@@ -1,8 +1,8 @@
 import React from 'react';
 
-const AnotherUserParticipation = () => {
+const AnotherUserParticipation = (props) => {
     return (
-        <button>Allow Another Participate</button>
+        <button onClick={props.resetUser}>Allow Another Participate</button>
     );
 }
  

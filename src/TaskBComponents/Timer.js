@@ -1,11 +1,13 @@
 import React from 'react';
 
 class Timer extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
-            count: 100
+            count: 10
         }
+        this.timer = null;
     }
 
     decrementValue() {
@@ -13,14 +15,17 @@ class Timer extends React.Component {
     }
 
     componentDidMount() {
-        setInterval(() => {
+        this.timer = setInterval(() => {
             this.decrementValue();
         }, 1000);
     }
 
-    // componentWillUnmount() {
-
-    // }
+    componentDidUpdate() {
+        if (this.state.count === 0) {
+            clearInterval(this.timer);
+            alert('Time\'s UP!')
+        }
+    }
 
     render() {
         return (
